@@ -57,9 +57,9 @@ impl AccountAddress {
     }
 
     pub fn from_hex_literal(literal: &str) -> Result<Self> {
-        ensure!(literal.starts_with("cosmos"), "literal must start with 0x.");
+        ensure!(literal.starts_with("cosmos") || literal.starts_with("0x") , "literal must start with cosmos.");
 
-        let hex_len = literal.len() - 5;
+        let hex_len = if literal.starts_with("0x") {literal.len() - 2 } else {literal.len() -5};
         let mut result = if hex_len % 2 != 0 {
             let mut hex_str = String::with_capacity(hex_len + 1);
             hex_str.push('0');
