@@ -29,7 +29,7 @@ impl AccountAddress {
     }
 
     /// The number of bytes in an address.
-    pub const LENGTH: usize = 16;
+    pub const LENGTH: usize = 21;
 
     pub const DEFAULT: Self = Self([0u8; AccountAddress::LENGTH]);
 
@@ -57,9 +57,9 @@ impl AccountAddress {
     }
 
     pub fn from_hex_literal(literal: &str) -> Result<Self> {
-        ensure!(literal.starts_with("0x"), "literal must start with 0x.");
+        ensure!(literal.starts_with("cosmos"), "literal must start with 0x.");
 
-        let hex_len = literal.len() - 2;
+        let hex_len = literal.len() - 5;
         let mut result = if hex_len % 2 != 0 {
             let mut hex_str = String::with_capacity(hex_len + 1);
             hex_str.push('0');
