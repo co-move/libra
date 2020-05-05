@@ -1957,6 +1957,8 @@ fn parse_module_ident<'input>(
     let v: Vec<&str> = transaction_dot_module.split('.').collect();
     assert!(v.len() == 2);
     let ident: String = v[0].to_string();
+    println!("identi: {:?}", &ident);
+
     if ident != "Transaction" {
         panic!("Ident = {} which is not Transaction", ident);
     }
